@@ -5,61 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Noodle! Support</title>
 <meta name="description" content="Help with Noodle!: common questions and how to get in touch.">
+<meta name="theme-color" content="#F3E8C8">
+<link rel="icon" href="noodle-icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#questions">Skip to common questions</a>
+<div class="room">
   <header class="top">
-    <a class="mark" href="support.html">Noodle!</a>
-    <nav class="nav">
-      <a href="privacy.html">Privacy</a>
-      <a href="support.html" aria-current="page">Support</a>
+    <a class="brand" href="support.html"><img src="noodle-icon.svg" alt="" width="36" height="36">Noodle!</a>
+    <nav class="keys" aria-label="Pages">
+      <a class="key" href="privacy.html">Privacy</a>
+      <a class="key" href="support.html" aria-current="page">Support</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Need a hand?</h1>
-    <p>Email us what happened. Your device model and iOS version help.</p>
-    <a class="cta" href="mailto:luyi0312@outlook.com">Email luyi0312@outlook.com</a>
-    <div class="chips">
-      <span>iPhone + iPad</span><span>iOS 26 or later</span><span>No account</span><span>Works offline</span>
+  <main class="split">
+    <div class="eyes">
+    <section class="display" aria-labelledby="title">
+      <p class="kicker">Support</p>
+      <h1 id="title">Need a hand?</h1>
+      <svg class="noodle" viewBox="100 220 830 660" aria-hidden="true" focusable="false">
+        <path d="M168 690 C300 700 320 360 512 360 C690 360 690 610 540 610 C390 610 420 300 630 280 C780 268 846 380 846 600"
+          fill="none" stroke="#F3E8C8" stroke-width="72" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="846" cy="800" r="56" fill="#E25A40"/>
+      </svg>
+      <p class="lede">Email us what happened. Your device model and iOS version help.</p>
+      <a class="cta" href="mailto:luyi0312@outlook.com">Email luyi0312@outlook.com</a>
+    </section>
+
+    <ul class="chips" aria-label="About Noodle!">
+      <li>iPhone and iPad</li><li>iOS 26 or later</li><li>No account</li><li>Works offline</li>
+    </ul>
     </div>
-  </section>
 
-  <section class="detail">
-    <div class="label">Common questions</div>
-    <details open>
-      <summary>Noodle! doesn't pick up anything when I record.</summary>
-      <p>Noodle! needs microphone access. Go to Settings &rsaquo; Privacy &amp; Security &rsaquo; Microphone and
-        turn Noodle! on.</p>
-    </details>
-    <details>
-      <summary>How do I send a recording to someone?</summary>
-      <p>In the Library, touch and hold a recording and choose <b>Share&hellip;</b>. Noodle! makes an .m4a file,
-        which plays on most phones and computers, and opens the share sheet so you can pick where it goes.</p>
-    </details>
-    <details>
-      <summary>I deleted a starter sound. Can I get it back?</summary>
-      <p>Starter sounds are ordinary sounds, so a deleted one stays deleted. Deleting and reinstalling Noodle! adds
-        them again, but it also erases everything else you've made.</p>
-    </details>
-    <details>
-      <summary>How do I move my work to a new phone?</summary>
-      <p>Noodle! keeps everything on your device and doesn't sync between devices. Your work moves with a backup:
-        set up the new phone from an iCloud or computer backup of the old one.</p>
-    </details>
-    <details>
-      <summary>The music stopped when a call came in.</summary>
-      <p>A phone call stops playback so Noodle! doesn't play over it. Press play to start again.</p>
-    </details>
-    <details>
-      <summary>Does Noodle! collect my data?</summary>
-      <p>Your work never leaves your device unless you share it. See the <a href="privacy.html">Privacy Policy</a>
-        for the whole of it.</p>
-    </details>
-  </section>
+    <section class="page" id="questions" aria-labelledby="faq">
+      <header>
+        <h2 id="faq">Common questions</h2>
+      </header>
 
-  <p class="foot">Noodle! is made by Yi Lu.</p>
+      <details open>
+        <summary>Where do I start?</summary>
+        <p>Tap a pad: every pad on rack A plays a drum from the first launch. To see how a whole beat is put
+          together, open the menu (&equiv; on the display) and choose <b>How it works</b>. It opens a new project
+          built from the starter sounds, and your own projects stay as they were.</p>
+      </details>
+      <details>
+        <summary>How do I record a sound?</summary>
+        <p>Tap <b>SOUND</b>, then hold a pad. Noodle! records into that pad until you lift your finger, and keeps
+          the whole take in your Library. To record without a pad, open Sounds, tap <b>+</b> and choose
+          <b>Record</b>.</p>
+      </details>
+      <details>
+        <summary>Noodle! doesn't pick anything up when I record.</summary>
+        <p>Noodle! needs microphone access. Go to <span class="path">Settings &rsaquo; Privacy &amp; Security
+          &rsaquo; Microphone</span> and turn Noodle! on.</p>
+      </details>
+      <details>
+        <summary>Can I use my own sounds?</summary>
+        <p>Yes. Open Sounds, tap <b>+</b> and choose <b>Import</b> to bring in an audio file from Files. It lands
+          in your Library, ready to put on a pad or cut into slices.</p>
+      </details>
+      <details>
+        <summary>How do I send a recording to someone?</summary>
+        <p>Open the menu (&equiv; on the display), choose <b>Share recording</b> and pick the recording. Noodle!
+          makes an .m4a file, which plays on most phones and computers, and opens the share sheet so you can pick
+          where it goes.</p>
+      </details>
+      <details>
+        <summary>I play left-handed.</summary>
+        <p>Open the menu and set <b>Playing hand</b> to <b>Left</b>. The keys and PLAY move under your left hand
+          wherever one hand plays the pads.</p>
+      </details>
+      <details>
+        <summary>I deleted a starter sound. Can I get it back?</summary>
+        <p>Starter sounds are ordinary recordings, so a deleted one stays deleted. Deleting and reinstalling
+          Noodle! adds them again, but it also erases everything else you've made.</p>
+      </details>
+      <details>
+        <summary>How do I move my work to a new phone?</summary>
+        <p>Noodle! keeps everything on your device and doesn't sync between devices. Your work moves with a
+          backup: set up the new phone from an iCloud or computer backup of the old one.</p>
+      </details>
+      <details>
+        <summary>The music stopped when a call came in.</summary>
+        <p>A call, an alarm or another app taking the sound stops playback, so Noodle! never plays over it. Press
+          PLAY to start again.</p>
+      </details>
+      <details>
+        <summary>Does Noodle! collect my data?</summary>
+        <p>No. Your work never leaves your device unless you share it. The
+          <a href="privacy.html">Privacy Policy</a> has the whole of it.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Noodle! is made by Yi Lu.</p>
+  </footer>
 </div>
 </body>
 </html>

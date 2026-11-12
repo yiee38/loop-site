@@ -1,54 +1,139 @@
+/* Noodle!'s site, drawn in the app's DS3 system (LOOP/DESIGN.md): paper ground, sheet pages inside one ink line,
+   one dark display, Helvetica Neue, flat — no shadow, blur or glow. Amber means sounding and vermilion recording,
+   so neither is decoration here; the rack inks each mean one rack, so the site draws none of them. */
+
 :root {
+  color-scheme: light;
   --paper: #F3E8C8;
-  --surface: #FAF4E2;
+  --sheet: #FBF7EC;
+  --sheet-pressed: #E9DFC2;
   --ink: #28241E;
-  --ink-2: #716856;
-  --hue-a: #8EB0E0;
-  --hue-b: #BAA5D6;
-  --hue-c: #6EBCAB;
-  --hue-d: #DC9CB5;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Helvetica Neue", sans-serif;
+  --secondary: #716856;          /* 5.14:1 on sheet, 4.50:1 on paper */
+  --page-head-rule: #E4DAC0;
+  --vermilion-display: #E25A40;
+  --display-dim: #B9B097;        /* 7.14:1 on ink */
+  --display-figure: #CFC4A6;     /* 8.89:1 on ink */
+
+  --line: 1px;
+  --r-key: 12px;
+  --r-page: 18px;
+  --r-display: 18px;
+
+  --face: "Helvetica Neue", Helvetica, Arial, "PingFang SC", sans-serif;
 }
 
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 html, body { margin: 0; }
-body { background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-a { color: inherit; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--face);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
 
-.wrap { max-width: 1040px; margin: 0 auto; padding: 24px 20px 96px; }
+.skip { position: absolute; left: 16px; top: -100px; background: var(--ink); color: var(--paper);
+  padding: 10px 14px; border-radius: var(--r-key); text-decoration: none; font-weight: 700; }
+.skip:focus { top: 12px; }
 
-.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.mark { font: 800 18px/1 var(--mono); text-decoration: none; background: var(--ink); color: var(--paper);
-  padding: 8px 12px; border-radius: 10px; }
-.nav { display: flex; gap: 6px; background: var(--surface); padding: 4px; border-radius: 999px; }
-.nav a { text-decoration: none; font: 600 14px/1 var(--sans); padding: 9px 14px; border-radius: 999px; color: var(--ink-2); }
-.nav a[aria-current] { background: var(--ink); color: var(--paper); }
+.room { max-width: 760px; margin: 0 auto; padding: 16px 16px 72px; }
 
-.hero { padding: 64px 0 36px; }
-.hero h1 { margin: 0; font-size: clamp(44px, 10vw, 104px); line-height: .92; letter-spacing: -0.045em; font-weight: 850; }
-.hero p { max-width: 560px; font-size: 19px; line-height: 1.5; margin: 22px 0 0; color: var(--ink-2); }
+/* The head: the icon and the name, and the two pages as keys. */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700;
+  font-size: 20px; letter-spacing: -0.01em; min-height: 44px; }
+.brand img { width: 36px; height: 36px; display: block; }
 
-.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.fact { background: var(--surface); border-radius: 16px; padding: 18px 18px 20px; border-top: 8px solid var(--c); }
-.fact .k { font: 700 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--ink-2); }
-.fact .v { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin: 10px 0 6px; }
-.fact p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.keys { display: flex; gap: 8px; }
+.key { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px;
+  padding: 0 16px; border: var(--line) solid var(--ink); border-radius: var(--r-key); background: var(--sheet);
+  color: var(--ink); text-decoration: none; font-weight: 500; font-size: 16px; line-height: 1.2;
+  touch-action: manipulation; }
+.key:hover, .key:active { background: var(--sheet-pressed); }
+.key[aria-current="page"] { background: var(--ink); color: var(--paper); }
 
-.detail { margin-top: 56px; }
-.detail > .label { font: 700 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--ink-2); margin-bottom: 10px; }
-.detail details { border-top: 2px solid var(--ink); }
-.detail details:last-of-type { border-bottom: 2px solid var(--ink); }
-.detail summary { list-style: none; cursor: pointer; padding: 18px 0; font-size: 20px; font-weight: 700;
-  display: flex; justify-content: space-between; gap: 16px; }
-.detail summary::-webkit-details-marker { display: none; }
-.detail summary::after { content: "+"; font: 400 26px/1 var(--mono); }
-.detail details[open] summary::after { content: "\2212"; }
-.detail details p { max-width: 680px; margin: 0 0 18px; font-size: 16px; line-height: 1.6; }
+/* The display: the one dark field. */
+.display { margin-top: 20px; background: var(--ink); color: var(--paper); border-radius: var(--r-display);
+  padding: 20px 20px 24px; display: grid; grid-template-columns: 1fr auto; gap: 8px 20px; align-items: end; }
+.display .kicker { grid-column: 1 / -1; font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--display-dim); margin: 0; }
+.display h1 { margin: 12px 0 0; font-size: clamp(36px, 8.5vw, 64px); line-height: 1; letter-spacing: -0.03em;
+  font-weight: 700; text-wrap: balance; }
+.display .lede { grid-column: 1 / -1; margin: 6px 0 0; max-width: 34em; color: var(--display-figure); font-size: 17px; }
+.display .noodle { width: clamp(72px, 18vw, 120px); height: auto; display: block; }
+.display .cta { grid-column: 1 / -1; justify-self: start; margin-top: 12px; }
 
-.cta { display: inline-block; margin-top: 26px; background: var(--ink); color: var(--paper); text-decoration: none;
-  font-size: 18px; font-weight: 700; padding: 16px 22px; border-radius: 14px; overflow-wrap: anywhere; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.chips span { background: var(--surface); border-radius: 999px; padding: 8px 12px; font: 600 13px/1 var(--mono); }
+.cta { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border-radius: var(--r-key);
+  background: var(--paper); color: var(--ink); text-decoration: none; font-weight: 700; font-size: 17px;
+  overflow-wrap: anywhere; }
+.cta:hover, .cta:active { background: var(--sheet-pressed); }
+.display .cta:focus-visible { outline-color: var(--paper); }
 
-.foot { margin-top: 40px; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+/* The four facts: sheets inside the line. */
+.facts { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.fact { background: var(--sheet); border: var(--line) solid var(--ink); border-radius: var(--r-page);
+  padding: 14px 16px 16px; }
+.fact .k { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--secondary); display: flex; align-items: center; gap: 6px; }
+.fact .v { margin: 6px 0 4px; color: var(--ink); font-size: 20px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+.fact p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--secondary); }
+.rec { width: 8px; height: 8px; border-radius: 50%; background: var(--vermilion-display); flex: none; }
+
+.chips { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { background: var(--sheet); border: var(--line) solid var(--ink); border-radius: var(--r-key);
+  padding: 8px 12px; font-size: 14px; font-weight: 500; line-height: 1.2; }
+
+/* A page: sheet inside the line, ruled between its sections. */
+.page { margin-top: 28px; background: var(--sheet); border: var(--line) solid var(--ink); border-radius: var(--r-page); }
+.page > header { padding: 14px 20px; border-bottom: var(--line) solid var(--page-head-rule); }
+.page > header h2 { margin: 0; font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; }
+.page > header p { margin: 2px 0 0; font-size: 14px; color: var(--secondary); }
+.page section, .page details { padding: 18px 20px 20px; border-top: var(--line) solid var(--page-head-rule); }
+.page > header + section, .page > header + details { border-top: 0; }
+.page h3 { margin: 0 0 6px; font-size: 18px; line-height: 1.3; }
+.page p { margin: 0 0 10px; max-width: 38em; }
+.page p:last-child { margin-bottom: 0; }
+.path { font-weight: 700; }
+
+.page details { padding-top: 0; padding-bottom: 0; }
+.page summary { list-style: none; cursor: pointer; min-height: 56px; padding: 14px 0; display: flex;
+  justify-content: space-between; align-items: center; gap: 16px; font-size: 18px; font-weight: 700; line-height: 1.3; }
+.page summary::-webkit-details-marker { display: none; }
+.page summary::after { content: ""; flex: none; width: 9px; height: 9px; margin: 0 4px 4px 0;
+  border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.page details[open] summary::after { transform: rotate(-135deg); margin: 4px 4px 0 0; }
+.page details > p:last-child { padding-bottom: 20px; }
+@media (prefers-reduced-motion: no-preference) {
+  .page summary::after { transition: transform 160ms ease-out; }
+}
+
+.foot { margin: 24px 4px 0; font-size: 15px; color: var(--secondary); }
+
+@media (min-width: 768px) {
+  .room { padding: 28px 24px 96px; }
+  .display { padding: 28px 32px 32px; border-radius: 22px; margin-top: 28px; }
+}
+
+/* A wide room (an iPad turned, a desktop): the eyes stand beside the page, as the app's page stands beside the
+   display on a tablet. The eyes stay put while the page scrolls, where the window is tall enough to hold them. */
+@media (min-width: 960px) {
+  .room { max-width: 1200px; padding: 28px 32px 96px; }
+  .split { display: grid; grid-template-columns: minmax(360px, 5fr) 7fr; gap: 24px; align-items: start;
+    margin-top: 28px; }
+  .eyes { min-width: 0; }
+  .split .display { margin-top: 0; padding: 28px 28px 30px; }
+  .split .display h1 { font-size: clamp(38px, 3.4vw, 48px); }
+  .split .display .noodle { width: 96px; }
+  .split .page { margin-top: 0; }
+  .split .page > header { padding: 18px 28px; }
+  .split .page section, .split .page details { padding-left: 28px; padding-right: 28px; }
+  .split .facts { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 960px) and (min-height: 700px) {
+  .eyes { position: sticky; top: 24px; }
+}
