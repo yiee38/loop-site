@@ -42,19 +42,33 @@ a { color: inherit; text-underline-offset: 3px; }
 
 .room { max-width: 760px; margin: 0 auto; padding: 16px 16px 72px; }
 
-/* The head: the icon and the name, and the two pages as keys. */
+/* The head: the icon and the name, and the page links as keys. */
 .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700;
   font-size: 20px; letter-spacing: -0.01em; min-height: 44px; }
 .brand img { width: 36px; height: 36px; display: block; }
 
-.keys { display: flex; gap: 8px; }
+.top-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.keys { display: flex; gap: 8px; flex-wrap: wrap; }
 .key { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px;
   padding: 0 16px; border: var(--line) solid var(--ink); border-radius: var(--r-key); background: var(--sheet);
   color: var(--ink); text-decoration: none; font-weight: 500; font-size: 16px; line-height: 1.2;
   touch-action: manipulation; }
 .key:hover, .key:active { background: var(--sheet-pressed); }
 .key[aria-current="page"] { background: var(--ink); color: var(--paper); }
+.language {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none; min-width: 44px; min-height: 44px;
+  font-size: 14px;
+}
+.language:hover { color: var(--secondary); }
+
+@media (max-width: 36rem) {
+  .top { gap: 8px; }
+  .top-links { width: 100%; justify-content: space-between; gap: 8px; }
+  .key { padding-inline: 6px; font-size: 14px; }
+}
+
 
 /* The display: the one dark field. */
 .display { margin-top: 20px; background: var(--ink); color: var(--paper); border-radius: var(--r-display);
@@ -136,4 +150,37 @@ a { color: inherit; text-underline-offset: 3px; }
 }
 @media (min-width: 960px) and (min-height: 700px) {
   .eyes { position: sticky; top: 24px; }
+}
+
+.guide-head { margin: 28px 0 20px; }
+.guide-head h1 { margin: 0; font-size: clamp(30px, 6vw, 48px); line-height: 1.1; }
+.guide-head p { margin: 8px 0 0; max-width: 44em; }
+.guide-figure { max-width: 330px; margin: 0 auto; }
+.guide-image { position: relative; }
+.guide-image img {
+  display: block; width: 100%; height: auto;
+  outline: var(--line) solid var(--ink); border-radius: var(--r-page);
+}
+.guide-mark {
+  position: absolute; transform: translate(-50%, -50%);
+  display: grid; place-items: center; width: 17px; height: 17px;
+  border-radius: 50%; background: var(--ink); color: var(--sheet);
+  font-size: 11px; font-weight: 700; line-height: 1;
+}
+.mode-mark { top: 44.12%; }
+.making-mark { top: 93.53%; }
+.guide-mark.first { left: 7.4%; }
+.guide-mark.second { left: 31%; }
+.guide-mark.third { left: 54.6%; }
+.guide-mark.fourth { left: 78.2%; }
+.guide-figure figcaption { margin-top: 8px; font-size: 14px; color: var(--secondary); }
+.guide-body { padding: 18px 20px 20px; }
+.guide-list { margin: 0; }
+.guide-list dt { font-weight: 700; }
+.guide-list dd { margin: 0; }
+.guide-list dd + dt { margin-top: 14px; }
+
+@media (min-width: 960px) {
+  .guide { display: grid; grid-template-columns: minmax(250px, 1fr) 2fr; gap: 28px; align-items: start; }
+  .guide-page:first-child { margin-top: 0; }
 }
